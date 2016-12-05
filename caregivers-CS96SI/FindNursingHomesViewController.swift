@@ -1,3 +1,4 @@
+
 //
 //  FindNursingHomesViewController.swift
 //  caregivers-CS96SI
@@ -9,6 +10,7 @@
 import UIKit
 
 class FindNursingHomesViewController: UIViewController {
+    @IBOutlet weak var menuButton: UIBarButtonItem!
 
     @IBOutlet weak var zipCodeTextField: UITextField!
     
@@ -36,11 +38,13 @@ class FindNursingHomesViewController: UIViewController {
 
     }
     override func viewDidLoad() {
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
